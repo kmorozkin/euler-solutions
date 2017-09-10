@@ -9,13 +9,9 @@ Find the pair of pentagonal numbers, Pj and Pk, for which their sum and differen
 is minimised; what is the value of D?
 
 '''
-from itertools import  count
-from bisect import bisect_left
+from itertools import count
 
-def in_list(coll, elem, lo=0, hi=None):
-    hi = hi or len(coll)
-    idx = bisect_left(coll, elem)
-    return idx < hi and coll[idx] == elem
+from src.utils.collections import in_list
 
 pentagonals = (int(x / 2 * (3 * x - 1)) for x in count(1, 1))
 cache = [next(pentagonals), next(pentagonals)]

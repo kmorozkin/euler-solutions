@@ -44,6 +44,7 @@ def is_probable_prime(n):
     """
 
     if not n & 1: return False
+    if n in {0, 1, 3, 7, 11, 13}: return True
 
     def check(a, s, d, n):
         x = pow(a, d, n)
@@ -60,7 +61,8 @@ def is_probable_prime(n):
     while d % 2 == 0:
         d >>= 1
         s += 1
-    for iteration in range(int(math.log2(n))):
+    iter_count = max(5, int(math.log2(n)))
+    for iteration in range(iter_count):
         a = random.randrange(1, n)
         if not check(a, s, d, n):
             return False

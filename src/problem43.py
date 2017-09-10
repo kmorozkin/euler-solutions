@@ -14,7 +14,7 @@ Let d1 be the 1st digit, d2 be the 2nd digit, and so on. In this way, we note th
 
 Find the sum of all 0 to 9 pandigital numbers with this property.
 '''
-from src.utils.collections import permutations
+from itertools import permutations
 from src.utils.digits import digits2num
 
 primes = [2, 3, 5, 7, 11, 13, 17]
@@ -27,7 +27,7 @@ def test(pandigital):
             return False
     return True
 
-for pandigital in permutations(range(10)):
+for pandigital in list(permutations(range(10))):
     if test(pandigital):
         result += digits2num(pandigital)
 
