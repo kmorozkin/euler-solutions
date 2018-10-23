@@ -42,7 +42,7 @@ all_passwords = itertools.product(string.ascii_lowercase, repeat=3)
 illegal = '@#$%^&*\\/}{+'
 
 for password in all_passwords:
-    if not all((chr(s) not in illegal for s in decode(contents[0:3], password))):
+    if not all(chr(s) not in illegal for s in decode(contents[0:3], password)):
         continue
     decoded_ascii = decode(contents, password)
     decoded = "".join(map(chr, decoded_ascii))

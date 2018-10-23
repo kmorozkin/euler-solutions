@@ -1,6 +1,7 @@
 import math
 import random
 
+
 # Code by David Eppstein, UC Irvine, 28 Feb 2002
 # http://code.activestate.com/recipes/117119/
 def gen_primes():
@@ -38,13 +39,21 @@ def gen_primes():
         q += 1
 
 
+PLAIN_PRIMES = {3, 5, 7, 11, 13}
+
+
 def is_probable_prime(n):
     """
     Miller-Rabin prime test
     """
 
-    if not n & 1: return False
-    if n in {0, 1, 3, 7, 11, 13}: return True
+    if not n & 1:
+        return False
+    if n == 1 or n in PLAIN_PRIMES:
+        return True
+    for plain_prime in PLAIN_PRIMES:
+        if n % plain_prime == 0:
+            return False
 
     def check(a, s, d, n):
         x = pow(a, d, n)
